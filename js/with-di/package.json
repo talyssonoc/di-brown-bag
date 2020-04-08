@@ -1,0 +1,13 @@
+{
+  "name": "with-di",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "awilix": "^4.2.5",
+    "jest": "^25.2.7"
+  }
+}
