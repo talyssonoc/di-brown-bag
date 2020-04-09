@@ -112,7 +112,7 @@ end
   - Independente de framework web usado
   - Possui um beta para integração com Rails (https://dry-rb.org/gems/dry-rails/0.1/)
   - É parte da suite dry-rb, com vários outros gems compatíveis
-  - Apesar da primeira das desvantagens listada, o setup pode ser facilitado utilicando convention-over-configuration
+  - Apesar da primeira das desvantagens listada, o setup pode ser facilitado utilizando convention-over-configuration
 
 - Desvantagens
   - Exige setup
