@@ -1,7 +1,7 @@
-const container = require('./approaches/______')
+const container = require('./approaches/awilix')
 
 async function main() {
-  const createUser = null /* fetch from container */ 
+  const createUser = container.resolve('createUser') /* fetch from container */ 
 
   const user = await createUser({
     name: 'Talysson',

@@ -1,10 +1,11 @@
 # Dependency injection
 
 - O que é?
+- Exemplos
 
 ```js
 // antes
-import saveUser from './saveUser';
+import saveUser from './saveUser'; // <- acoplamento
 const createUser = async (userData) => {
   const user = await  saveUser(user)
   return user
@@ -13,6 +14,7 @@ const createUser = async (userData) => {
 // ---
 
 // depois
+// dependência injetada ⤵️
 const createUser = ({ saveUser }) => async (userData) => {
   const user = await saveUser(user)
   return user
@@ -24,8 +26,7 @@ const createUser = ({ saveUser }) => async (userData) => {
 require './user_database.rb' # ou através do autoload
 class CreateUser
   def call(user_data)
-    # user_database é importado
-    UserDatabase.save(user_data)
+    UserDatabase.save(user_data) #acoplamento
   end
 end
 
@@ -33,12 +34,12 @@ end
 
 # depois
 class CreateUser
+  # dependência injetada ⤵️
   def initialize(user_database:)
     @user_database = user_database
   end
 
   def call(user_data)
-    # user_database é recebido como parâmetro
     @user_database.save(user_data)
   end
 end
@@ -53,6 +54,11 @@ end
   - Necessário usar factories/classes para as dependências [JS]
   - Se você não tem costume, pode parecer desnecessário ou mágico demais
   - Em alguns **poucos** casos é overkill
+
+- Como injetar de maneira automática?
+- O que é um container?
+  - Composition root
+  - Não deve acoplar sua aplicação ao container
 
 ## Dependency injection com JS
 
@@ -78,12 +84,16 @@ end
 - Desvantagens
   - Não  faz caching de de dependências
   - Como todo approach manual, seu time tem que dar manutenção
-  - 
 
 ### Container com Awilix
 
 - Vantagens
+  - Permite injetar dependências tanto como funções quanto classes e valores
+  - Dependências tem lifecycle (por exemplo, cache que dura apenas durante a request)
+  - Biblioteca robusta e bastante usada
 - Desvantagens
+  - Proxy
+  - Complexo/mágico
 
 ### Onde usar
 
@@ -101,7 +111,7 @@ end
   - Approach robusto e flexível
   - Independente de framework web usado
   - Possui um beta para integração com Rails (https://dry-rb.org/gems/dry-rails/0.1/)
-  - É parte da suite dry-rb, com vários outros pacotes compatíveis
+  - É parte da suite dry-rb, com vários outros gems compatíveis
   - Apesar da primeira das desvantagens listada, o setup pode ser facilitado utilicando convention-over-configuration
 
 - Desvantagens
